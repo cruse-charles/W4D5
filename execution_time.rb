@@ -1,3 +1,5 @@
+require 'byebug'
+
 def my_min(list)
     min = list.min
 end
@@ -47,23 +49,30 @@ list = [5, 3, -7]
 p largest_contiguous_subsum(list)
 
 
+
+
+
 def largest_contiguous_subsum_2(list)
     current_sum = 0
     max_sum = 0
     
     
-    (0...list.length-1).each do |i|
-        if list[i+1] > 0
-            current_sum += list[i]
-        else
-            if current_sum > max_sum
-                max_sum = current_sum
-                current_sum = 0
-            end
+    (1...list.length).each do |i|
+
+        if current_sum == list.sum
+            current_sum = 0
         end
+        
+        if current_sum > max_sum
+            max_sum = current_sum
+            current_sum = 0
+        end
+        # end
     end
     max_sum
 end
 
-list = [5, 3, -7]
+
+
+list = [2, 3, -6, 7, -6, 7]
 p largest_contiguous_subsum_2(list)
